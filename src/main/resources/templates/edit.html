@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+</head>
+<body>
+
+<h2>Edit Book</h2>
+
+<form th:action="@{'/books/' + book.id + '/edit'}" th:object="${book}" method="post">
+    <label>Title: <input type="text" th:field="*{title}"/></label><br/>
+    <label>Author:
+        <select th:field="*{author}">
+            <option th:each="author : ${authors}" th:value="${author}"
+                    th:text="${author.firstName + ' ' + author.lastName}"></option>
+        </select>
+    </label><br/>
+    <label>Genre:
+        <select th:field="*{genre}">
+            <option th:each="genre : ${genres}" th:value="${genre}" th:text="${genre.name}"></option>
+        </select>
+    </label><br/>
+    <label>ISBN: <input type="text" th:field="*{isbn}"/></label><br/>
+    <input type="submit" value="Save Changes"/>
+</form>
+
+<a th:href="@{'/books/' + book.id}" class="btn btn-primary">Cancel</a>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/libraryManagementSystem?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:Tsvettanovv_18}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+sql:
+  init:
+    mode: never
+security:
+  oauth2:
+    client:
+      registration:
+        github:
+          client_id: ${GITHUB_CLIENT:}
+          client-secret: ${GITHUB_SECRET:}
+          scope: user:email
+mvc:
+  hiddenmethod:
+    filter:
+      enabled: true
+
+lms:
+  default.admin.pass: ${DEFAULT_ADMIN_PASSWORD:privatepassword}
+  remember.me.key: ${REMEMBER_ME_KEY:privatepassword}
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.springframework.security: TRACE
+
+server:
+  port: 9090
